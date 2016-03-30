@@ -44,6 +44,7 @@ NSString * const kMagicalRecordDidMergeChangesFromiCloudNotification = @"kMagica
                              object:otherContext];
 }
 
+#if !TARGET_OS_WATCH
 #pragma mark - Context iCloud Merge Helpers
 
 - (void) MR_mergeChangesFromiCloud:(NSNotification *)notification;
@@ -63,6 +64,7 @@ NSString * const kMagicalRecordDidMergeChangesFromiCloudNotification = @"kMagica
                                         userInfo:[notification userInfo]];
     }];
 }
+#endif
 
 - (void) MR_mergeChangesFromNotification:(NSNotification *)notification;
 {
@@ -85,6 +87,7 @@ NSString * const kMagicalRecordDidMergeChangesFromiCloudNotification = @"kMagica
 	}
 }
 
+#if !TARGET_OS_WATCH
 - (void) MR_observeiCloudChangesInCoordinator:(NSPersistentStoreCoordinator *)coordinator;
 {
     if (![MagicalRecord isICloudEnabled]) return;
@@ -104,5 +107,5 @@ NSString * const kMagicalRecordDidMergeChangesFromiCloudNotification = @"kMagica
                                   name:NSPersistentStoreDidImportUbiquitousContentChangesNotification
                                 object:coordinator];
 }
-
+#endif
 @end
